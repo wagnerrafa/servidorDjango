@@ -1,0 +1,53 @@
+prompt de comando>>
+python -m venv ambiente """Criar ambiente virtual"""
+ambiente\Scripts>activate """Ativar ambiente"""
+pip install django """instalar django"""
+django-admin startproject servidor """Criar novo projeto django "servidor" é o nome do projeto""
+manage.py runserver """rodar servidor, ctrl+c interromper servidor"""
+manage.py startapp home """'home' é o nome do app"""
+pip freeze > requirements.txt """ Salvar extensoes necessarias para o ambiente virtual""
+pip install -r requirements.txt """ Instalar as extensoes necessarias do projeto"""
+<<prompt de comando
+
+abrir o code .
+
+setting.py{
+    language_code = 'pt-br'
+}
+
+dentro da pasta do projeto{ """projeto=home"""
+    add nova pasta>> "templates"
+            add arquivo dentro da pasta templates>>  index.html
+}
+
+views.py{
+    add>> 
+    def home(request): """home=nome da pagina"""
+        return render(request, 'index.html')    
+}
+urls.py{
+    add>>
+    from home.views import home
+    urlpatterns = [
+    add>> path('', home),
+]
+}
+setting.py{
+    INSTALLED_APPS = [
+   add>> 
+   'home',
+]
+}
+
+criar pasta dentro do projeto{
+    pasta >>"static"
+    novo arquivo >>"home.css" 
+}
+no index.html>>
+para linkar o css add>> <link rel="stylesheet" href="{% static "/home.css" %}">
+no topo da pagina add>> {% load staticfiles %}
+
+na pasta do git init{
+    add arquivo>> .gitignore
+                    escrever>> ambiente ou venv """Para ignorar a pasta do ambiente virtual na hora de enviar para o git"""
+}
